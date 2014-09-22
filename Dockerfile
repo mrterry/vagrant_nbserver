@@ -21,5 +21,6 @@ RUN conda install \
 #RUN conda install anaconda psycopg2 --yes
 
 EXPOSE 8888
-#CMD ipython notebook --no-browser --ip=0.0.0.0 --port 8888
-CMD /bin/bash
+# CMD ipython notebook --no-browser --ip=0.0.0.0 --port 8888
+# CMD /bin/bash
+CMD echo "done"

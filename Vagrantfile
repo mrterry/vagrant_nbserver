@@ -9,7 +9,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     v.vm.provider "docker" do |d|
       # describe the docker image you want to run
       d.cmd = ["/sbin/my_init", "--enable-insecure-key"]
-      d.image = "phusion/baseimage"
+      d.build_dir = "."
       d.has_ssh = true
 
       # filesystem syncing with boot2docker as a docker host sucks.
