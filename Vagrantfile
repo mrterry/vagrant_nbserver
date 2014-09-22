@@ -5,14 +5,17 @@
 VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-  # All Vagrant configuration is done here. The most common configuration
-  # options are documented and commented below. For a complete reference,
-  # please see the online documentation at vagrantup.com.
   config.vm.define "phusion" do |v|
     v.vm.provider "docker" do |d|
+      # describe the docker image you want to run
       d.cmd = ["/sbin/my_init", "--enable-insecure-key"]
       d.image = "phusion/baseimage"
       d.has_ssh = true
+
+      # filesystem syncing with boot2docker as a docker host sucks.
+      # instead use a virtualbox linux vm as a docker host.
+      # this docker host is described by vagrant_vagrantfile
+      d.vagrant_vagrantfile = "./dockerhost/Vagrantfile"
     end
 
     v.ssh.username = "root"
@@ -20,6 +23,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     
     v.vm.provision "shell", inline: "echo Hello"
 
-    v.vm.synced_folder "./keys", "/vagrant"
+    v.vm.synced_folder "./vagrant_share", "/vagrant_share"
+    v.vm.boot_timeout = 60
   end
 end
