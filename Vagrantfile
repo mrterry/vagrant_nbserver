@@ -9,6 +9,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     v.vm.provider "docker" do |d|
       # describe the docker image you want to run
       d.build_dir = "."
+      d.build_args = ['--quiet=false']
+      d.ports = ["8081:8081"]
       d.has_ssh = true
 
       # filesystem syncing with boot2docker as a docker host sucks.
