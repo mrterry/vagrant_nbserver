@@ -8,7 +8,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.define "phusion" do |v|
     v.vm.provider "docker" do |d|
       # describe the docker image you want to run
-      d.cmd = ["/sbin/my_init", "--enable-insecure-key"]
       d.build_dir = "."
       d.has_ssh = true
 
@@ -21,8 +20,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     v.ssh.username = "root"
     v.ssh.private_key_path = "insecure_key"
     
-    v.vm.provision "shell", inline: "echo Hello"
-
     v.vm.synced_folder "./vagrant_share", "/vagrant_share"
     v.vm.boot_timeout = 60
   end

@@ -20,7 +20,8 @@ RUN conda install \
 #psycopg2 geoalchemy descartes 
 #RUN conda install anaconda psycopg2 --yes
 
-EXPOSE 8888
-# CMD ipython notebook --no-browser --ip=0.0.0.0 --port 8888
-# CMD /bin/bash
-CMD echo "done"
+RUN mkdir /etc/service/ipynb_server
+ADD ipynb_server.sh /etc/service/ipynb_server/run
+
+EXPOSE 80
+CMD /sbin/my_init --enable-insecure-key
