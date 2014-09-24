@@ -19,10 +19,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       d.vagrant_vagrantfile = "./dockerhost/Vagrantfile"
     end
 
-    v.ssh.username = "root"
-    v.ssh.private_key_path = "insecure_key"
-    
-    v.vm.synced_folder "./vagrant_share", "/vagrant_share"
-    v.vm.boot_timeout = 60
+   v.vm.synced_folder "./vagrant_share", "/vagrant_share"
   end
 end

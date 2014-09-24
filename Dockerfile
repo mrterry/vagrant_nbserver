@@ -4,7 +4,7 @@ FROM ubuntu:14.04
 RUN useradd --create-home --password nbserver nbserver
 
 RUN apt-get -y update
-#RUN apt-get -y upgrade
+RUN apt-get -y upgrade
 
 RUN apt-get install -y openssh-server supervisor
 RUN mkdir -p /var/run/sshd
@@ -19,15 +19,14 @@ RUN bash /root/miniconda.sh -b -p /opt/miniconda
 ENV PATH $PATH:/opt/miniconda/bin
 
 RUN conda update conda --yes
-# RUN conda install \
-#     cython ipython ipython-notebook matplotlib networkx nose numpy pandas scikit-image scikit-learn scipy statsmodels sympy \
-#     beautiful-soup binstar dateutil libxml2 libxslt nltk numba numexpr pillow pip sqlalchemy \
-#     flake8 mock pytest \
-#     --yes
+RUN conda install \
+    cython ipython ipython-notebook matplotlib networkx nose numpy pandas scikit-image scikit-learn scipy statsmodels sympy \
+    beautiful-soup binstar dateutil libxml2 libxslt nltk numba numexpr pillow pip sqlalchemy \
+    flake8 mock pytest \
+    --yes
 # binstar
 #RUN conda install anaconda psycopg2 --yes
 #psycopg2 geoalchemy descartes 
-RUN conda install ipython-notebook
 
 RUN chown -R nbserver /opt/miniconda
 
