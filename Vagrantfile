@@ -5,7 +5,7 @@
 VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-  config.vm.define "phusion" do |v|
+  config.vm.define "nbserver" do |v|
     v.vm.provider "docker" do |d|
       # describe the docker image you want to run
       d.build_dir = "."
@@ -19,6 +19,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       d.vagrant_vagrantfile = "./dockerhost/Vagrantfile"
     end
 
-   v.vm.synced_folder "./vagrant_share", "/vagrant_share"
+  v.vm.synced_folder "./vagrant_share", "/vagrant_share"
   end
 end

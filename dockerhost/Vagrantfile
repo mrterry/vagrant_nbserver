@@ -6,6 +6,16 @@ VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|  
   config.vm.box = "hashicorp/precise64"
+
+  config.vm.provider "virtualbox" do |v|
+    # make the docker host box beefy
+    v.memory = 8192
+    v.cpus = 4
+
+    # running headless
+    v.customize ["modifyvm", :id, "--vram", "10"]
+  end
+
   config.vm.provision "docker"
   config.vm.provision "shell", inline:
     "ps aux | grep 'sshd:' | awk '{print $2}' | xargs kill"
