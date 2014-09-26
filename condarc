@@ -1,0 +1,4 @@
+channels:
+  - defaults
+  - https://conda.binstar.org/dan_blanchard 
+  - https://conda.binstar.org/mrterry
