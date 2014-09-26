@@ -58,15 +58,16 @@ RUN conda install --yes \
     pandas \
     pillow \
     pip \
-#    psycopg2 \
     pytest \
-#    redshift-sqlalchemy \
     scikit-image \
     scikit-learn \
     scipy \
     sqlalchemy \
     statsmodels \
     sympy 
+
+RUN conda install --yes psycopg2
+#RUN conda install --yes redshift-sqlalchemy
 
 # supervisor runs as root.  so switch back to root.
 USER root
