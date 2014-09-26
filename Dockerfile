@@ -36,6 +36,11 @@ RUN chown -R nbserver:nbserver /home/nbserver
 
 # switch user and install packages
 USER nbserver
+
+# install nltk and its data.  do this as a separate step to make caching easier.
+RUN conda install nltk --yes
+RUN /home/nbserver/miniconda/bin/python -m nltk.downloader all
+
 RUN conda install --yes \
     beautiful-soup \
     binstar \
@@ -50,7 +55,6 @@ RUN conda install --yes \
     matplotlib \
     mock \
     networkx \
-    nltk \
     nose \
     numba \
     numexpr \
