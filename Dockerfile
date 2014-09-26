@@ -58,6 +58,7 @@ RUN conda install --yes \
     pandas \
     pillow \
     pip \
+    pytables \
     pytest \
     scikit-image \
     scikit-learn \
