@@ -19,6 +19,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       d.vagrant_vagrantfile = "./dockerhost/Vagrantfile"
     end
 
-  v.vm.synced_folder "./vagrant_share", "/vagrant_share"
+    v.vm.synced_folder "./vagrant_share", "/vagrant_share"
   end
+  config.ssh.username = "root"
+  config.ssh.password = "nbserver"
 end
